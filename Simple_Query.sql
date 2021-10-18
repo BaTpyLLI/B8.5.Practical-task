@@ -1,1 +1,1 @@
-select * from author limit 1;
+select * from author limit 2;
