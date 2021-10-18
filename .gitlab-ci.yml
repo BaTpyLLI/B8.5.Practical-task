@@ -1,0 +1,15 @@
+image: alpine
+
+build-job:
+  rules:
+      - changes:
+          - Simple_Query.sql
+  stage: build
+  script:
+      - apk update
+      - apk add mariadb-client
+      - mysql --user rfamro --host mysql-rfam-public.ebi.ac.uk --port 4497 --database Rfam < Simple_Query.sql > query_output.txt
+  artifacts:
+    paths:
+    - query_output.txt
+    expire_in: 20 minutes
